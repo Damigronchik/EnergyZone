@@ -1,0 +1,216 @@
+@import 'general.scss';
+
+.about {
+    width: 1240px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    &__image {
+        width: 610px;
+    }
+    &__info {
+        width: 610px;
+    }
+    &__title {
+        @include title();
+        font-size: 48px;
+        text-align: left;
+        margin-bottom: 10px
+    }
+    &__text {
+        @include main-text();
+        margin-bottom: 55px
+    }
+    &__button {
+        @include button();
+    }
+}
+
+.contact-us {
+    width: 1240px;
+
+    .form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+
+        &__title {
+            @include title();
+        }
+        &__input-fields {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        &__left-inputs {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: 10px;
+        }
+        &__label {
+            @include main-text();
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+        }
+        &__input {
+            @include main-text();
+            width: 591px;
+            height: 52px;
+            padding-left: 15px;
+            background-color: transparent;
+            outline: 2px #2E2E2E solid;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 3px 4px 8px rgba(white, 0.15);
+            margin-top: 10px;
+
+            &::placeholder {
+                @include main-text();
+                color: rgba(255, 255, 255, 0.7);
+            }
+            &:focus {
+                outline: 2px $main-orange solid;
+            }
+        }
+        &__input_error {
+            outline: 2px red solid;
+        }
+        &__input_big {
+            padding-top: 10px;
+            height: 156px;
+        }
+        &__error {
+            @include main-text;
+            width: min-content;
+            height: auto;
+            color: red;
+            font-size: 14px;
+        }
+        &__agreement{
+            @include main-text();
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        &__checkbox {
+            margin-right: 8px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            appearance: none;
+            width: 19px;
+            height: 19px;
+            border: 2px solid $main-orange;
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+
+            &:checked {
+                background-color: $main-orange;
+                border-color: $main-orange;
+
+                &::after {
+                    content: "✔";
+                    position: absolute;
+                    color: white;
+                    font-size: 16px;
+                    left: 1px;
+                    top: -7px;
+                }
+            }
+        }
+        &__button {
+            @include button();
+        }
+    }
+
+    .modal-window {
+        display: none;
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.15);
+        z-index: 1;
+        
+        &__content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 40px 60px;
+            height: auto;
+            background-color: $background;
+            border: 2px $main-orange solid;
+            border-radius: 5px;
+            animation: modalopen 0.5s;
+
+            &.closing {
+                animation: modalclose 0.5s;
+            }
+        }
+        &__title {
+            @include title;
+        }
+        &__text {
+            @include main-text;
+            font-weight: 700;
+            text-align: center;
+            width: 569px;
+        }
+        &__buttons {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 30px;
+        }
+        &__homepage, &__close {
+            @include button;
+        }
+        &__homepage {
+            background-color: $main-orange;
+        }
+        &__close-icon {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+    }
+}
+
+@keyframes modalopen {
+    from {opacity: 0; transform: translateY(-100px)}
+    to {opacity: 100%; transform: translateY(0)}
+}
+@keyframes modalclose {
+    from {opacity: 100%; transform: translateY(0)}
+    to {opacity: 0; transform: translateY(-100px)}
+    // 0% {opacity: 100%; transform: translate(0, 0)}
+    // 12% {opacity: 100%; transform: translate(-200px, 0)}
+    // 25% {opacity: 100%; transform: translate(-200px, 100px)}
+    // 37% {opacity: 100%; transform: translate(400px, 100px)}
+    // 50% {opacity: 100%; transform: translate(400px, 0)}
+    // 62% {opacity: 100%; transform: translate(300px, 0)}
+    // 74% {opacity: 100%; transform: translate(300px, -400px)}
+    // 87% {opacity: 100%; transform: translate(-100px, -400px)}
+    // 100% {opacity: 100%; transform: translate(-100px, 0)}
+}

@@ -1,0 +1,374 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap");
+@import 'header.css';
+@import 'footer.css';
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  background-color: #01010F;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+}
+
+.about {
+  width: 1240px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.about__image {
+  width: 610px;
+}
+.about__info {
+  width: 610px;
+}
+.about__title {
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 4px #F67A45;
+  position: relative;
+}
+.about__title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #01010F;
+  -webkit-text-stroke: 0;
+  z-index: 1;
+}
+.about__title {
+  font-size: 48px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.about__text {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  margin-bottom: 55px;
+}
+.about__button {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  border: 2px #F67A45 solid;
+  padding: 10px 20px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.about__button:hover {
+  background-color: #F67A45;
+  outline: 2px #F67A45 solid;
+  outline-offset: 3px;
+  transition: 0.3s;
+}
+
+.contact-us {
+  width: 1240px;
+}
+.contact-us .form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.contact-us .form__title {
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 4px #F67A45;
+  position: relative;
+}
+.contact-us .form__title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #01010F;
+  -webkit-text-stroke: 0;
+  z-index: 1;
+}
+.contact-us .form__input-fields {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.contact-us .form__left-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+}
+.contact-us .form__label {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.contact-us .form__input {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  width: 591px;
+  height: 52px;
+  padding-left: 15px;
+  background-color: transparent;
+  outline: 2px #2E2E2E solid;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 3px 4px 8px rgba(255, 255, 255, 0.15);
+  margin-top: 10px;
+}
+.contact-us .form__input::-moz-placeholder {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  color: rgba(255, 255, 255, 0.7);
+}
+.contact-us .form__input::placeholder {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  color: rgba(255, 255, 255, 0.7);
+}
+.contact-us .form__input:focus {
+  outline: 2px #F67A45 solid;
+}
+.contact-us .form__input_error {
+  outline: 2px red solid;
+}
+.contact-us .form__input_big {
+  padding-top: 10px;
+  height: 156px;
+}
+.contact-us .form__error {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  width: -moz-min-content;
+  width: min-content;
+  height: auto;
+  color: red;
+  font-size: 14px;
+}
+.contact-us .form__agreement {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.contact-us .form__checkbox {
+  margin-right: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 19px;
+  height: 19px;
+  border: 2px solid #F67A45;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+.contact-us .form__checkbox:checked {
+  background-color: #F67A45;
+  border-color: #F67A45;
+}
+.contact-us .form__checkbox:checked::after {
+  content: "✔";
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  left: 1px;
+  top: -7px;
+}
+.contact-us .form__button {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  border: 2px #F67A45 solid;
+  padding: 10px 20px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.contact-us .form__button:hover {
+  background-color: #F67A45;
+  outline: 2px #F67A45 solid;
+  outline-offset: 3px;
+  transition: 0.3s;
+}
+.contact-us .modal-window {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.15);
+  z-index: 1;
+}
+.contact-us .modal-window__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 40px 60px;
+  height: auto;
+  background-color: #01010F;
+  border: 2px #F67A45 solid;
+  border-radius: 5px;
+  animation: modalopen 0.5s;
+}
+.contact-us .modal-window__content.closing {
+  animation: modalclose 0.5s;
+}
+.contact-us .modal-window__title {
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 4px #F67A45;
+  position: relative;
+}
+.contact-us .modal-window__title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #01010F;
+  -webkit-text-stroke: 0;
+  z-index: 1;
+}
+.contact-us .modal-window__text {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  width: 569px;
+}
+.contact-us .modal-window__buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+.contact-us .modal-window__homepage, .contact-us .modal-window__close {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  border: 2px #F67A45 solid;
+  padding: 10px 20px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.contact-us .modal-window__homepage:hover, .contact-us .modal-window__close:hover {
+  background-color: #F67A45;
+  outline: 2px #F67A45 solid;
+  outline-offset: 3px;
+  transition: 0.3s;
+}
+.contact-us .modal-window__homepage {
+  background-color: #F67A45;
+}
+.contact-us .modal-window__close-icon {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+}
+@keyframes modalclose {
+  from {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}/*# sourceMappingURL=about.css.map */

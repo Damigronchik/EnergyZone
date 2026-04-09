@@ -1,0 +1,312 @@
+@import url("https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap");
+@import 'header.css';
+@import 'footer.css';
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  background-color: #01010F;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  max-width: 1240px;
+  width: 100%;
+  padding-top: 30px;
+  z-index: 2;
+}
+.header__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 94px;
+  height: 110px;
+}
+.header__logo-picture {
+  width: inherit;
+  height: inherit;
+}
+.header__nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__center-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.header__menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+  list-style-type: none;
+  position: relative;
+}
+.header__menu-item:hover {
+  transition: 0.5s;
+  text-decoration: underline;
+  text-decoration-color: #F67A45;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 8px;
+}
+.header__menu-item:nth-child(4) {
+  text-decoration: none;
+}
+.header__menu-item:hover > .header__menu {
+  display: flex;
+}
+.header__menu-item_submenu > .header__menu {
+  display: none;
+  text-decoration: none;
+  position: absolute;
+  flex-direction: column;
+  align-items: start;
+  gap: 5px;
+  border-left: 3px #F67A45 solid;
+  padding: 0 0 5px 3px;
+  width: 196px;
+  animation: show-submenu 0.5s;
+}
+.header__link {
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+  transition: 1.5s;
+}
+.header #accountButton {
+  margin-left: 50px;
+}
+.header .registration, .header .login {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.15);
+  z-index: 1;
+}
+.header .registration__content, .header .login__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 40px 60px;
+  height: auto;
+  background-color: #01010F;
+  border: 2px #F67A45 solid;
+  border-radius: 5px;
+  animation: modalopen 0.5s;
+}
+.header .registration__content.closing, .header .login__content.closing {
+  animation: modalclose 0.5s;
+}
+.header .registration__title, .header .login__title {
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 4px #F67A45;
+  position: relative;
+}
+.header .registration__title::after, .header .login__title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #01010F;
+  -webkit-text-stroke: 0;
+  z-index: 1;
+}
+.header .registration__label, .header .login__label {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 5px;
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-weight: 700;
+  position: relative;
+}
+.header .registration__input, .header .login__input {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-size: 16px;
+  width: 400px;
+  height: 48px;
+  padding-left: 15px;
+  background-color: transparent;
+  outline: 2px #2E2E2E solid;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 3px 4px 8px rgba(255, 255, 255, 0.15);
+  outline: none;
+  position: relative;
+}
+.header .registration__input::-moz-placeholder, .header .login__input::-moz-placeholder {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.header .registration__input::placeholder, .header .login__input::placeholder {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.header .registration__input:focus, .header .login__input:focus {
+  outline: 2px #F67A45 solid;
+}
+.header .registration__input_error, .header .login__input_error {
+  outline: 2px red solid;
+}
+.header .registration__show-password, .header .login__show-password {
+  position: absolute;
+  top: 48px;
+  left: 365px;
+  width: 32.5px;
+  height: 27px;
+  opacity: 70%;
+  transition: 0.2s;
+}
+.header .registration__show-password:hover, .header .login__show-password:hover {
+  opacity: 100%;
+  transition: 0.2s;
+}
+.header .registration__error, .header .login__error {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  color: red;
+  font-size: 14px;
+}
+.header .registration__prompt, .header .login__prompt {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-size: 16px;
+}
+.header .registration__prompt_orange, .header .login__prompt_orange {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-size: inherit;
+  color: #F67A45;
+}
+.header .registration__prompt_orange:hover, .header .login__prompt_orange:hover {
+  -webkit-text-decoration: underline #F67A45;
+          text-decoration: underline #F67A45;
+  cursor: pointer;
+}
+.header .registration__done, .header .login__done {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  border: 2px #F67A45 solid;
+  padding: 10px 20px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.header .registration__done:hover, .header .login__done:hover {
+  background-color: #F67A45;
+  outline: 2px #F67A45 solid;
+  outline-offset: 3px;
+  transition: 0.3s;
+}
+.header .registration__done, .header .login__done {
+  font-size: 16px;
+}
+.header .registration__close, .header .login__close {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@keyframes show-submenu {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+}
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+}
+@keyframes modalclose {
+  from {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}/*# sourceMappingURL=header.css.map */

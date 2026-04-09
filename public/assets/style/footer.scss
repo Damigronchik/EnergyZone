@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@mixin footer-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@mixin footer-text {
+    font-family: 'Alumni Sans', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: white;
+}
+
+$main-orange: #F67A45;
+
+
+.footer {
+    width: 100%;
+    border-top: 3px #F67A45 solid;
+    padding-top: 100px;
+    @include footer-flex();
+    gap: 80px;
+        
+    &__info {
+        width: 1240px;
+        @include footer-flex();
+        flex-direction: row;
+        justify-content: space-between;
+
+        .info-block, .explore{
+            @include footer-flex();
+            align-items: start;
+            gap: 20px;
+
+            &__title {
+                @include footer-text();
+                margin-bottom: 5px;
+                font-size: 32px;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+            &__text, &__text_orange, &__link {
+                @include footer-text();
+                font-weight: 500;
+            }
+            &__text_orange {
+                color: $main-orange;
+            }
+            &__link {
+                text-decoration: none;
+                transition: 0.3s;
+
+                &:hover {
+                    // font-size: 26px;
+                    border-left: 3px $main-orange solid;
+                    padding-left: 4px;
+                    transition: 0.3s;
+                }
+            }
+        }
+        .explore {
+            width: 188px;
+        }
+    }
+    &__logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 180px;
+        height: 210px;
+
+        &-picture {
+            width: inherit;
+            height: inherit;
+        }
+    }
+
+    &__copyright {
+        border-top: 2px #2E2E2E solid;
+        @include footer-flex();
+        padding-block: 24px;
+        width: 100%;
+    }
+
+    &__copyright-text {
+        font-family: Exo, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        text-align: center;
+    }
+}

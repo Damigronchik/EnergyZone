@@ -1,0 +1,178 @@
+@import 'general.scss';
+
+//переделат
+.modal-window {
+    display: none;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.15);
+    z-index: 1;
+    
+    &__content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 40px 60px;
+        height: auto;
+        background-color: $background;
+        border: 2px $main-orange solid;
+        border-radius: 5px;
+        animation: modalopen 0.5s;
+
+        &.closing {
+            animation: modalclose 0.5s;
+        }
+    }
+    &__title {
+        @include title;
+        line-height: 100%;
+        max-width: 700px;
+    }
+    &__description {
+        @include main-text;
+        font-weight: 700;
+        text-align: center;
+        max-width: 700px;
+    }
+    &__buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 30px;
+    }
+    &__signup, &__goback, &__homepage, &__account {
+        @include button;
+    }
+    &__signup, &__homepage {
+        background-color: $main-orange;
+    }
+    &__close-icon {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+}
+//
+
+.programs {
+    @include flex-block;
+    align-items: center;
+    
+    &__list {
+        max-width: 1120px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+
+        .card {
+            width: 500px;
+            height: 564px;
+            border-radius: 5px;
+            position: relative;
+            padding: 5px;
+            
+            &__back-img {
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+                opacity: 70%;
+                position: relative;
+            }
+            &__info {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                justify-content: end;
+                gap: 3px;
+                position: absolute;
+                bottom: 0;
+                left: 0;                
+                margin: 0 0 15px 15px;
+            }
+            
+            &__name {
+                font-family: Andika, sans-serif;
+                font-size: 24px;
+                font-weight: 700;
+                z-index: 2;
+            }
+            &__description {
+                display: none;
+                @include main-text;
+                font-size: 16px;
+            }
+            &__learn-more {
+                display: none;
+                background-color: transparent;
+                border: none;
+                font-family: 'Alumni Sans', sans-serif;
+                font-size: 22px;
+                font-weight: 700;
+                color: $main-orange;
+            }
+            &__button {
+                background-color: transparent;
+                border: none;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+            }
+
+            &:hover {
+                outline: 3px $main-orange solid;
+                outline-offset: 6px;
+                transition: 0.5s;
+                
+                .card__back-img {
+                    transition: 0.5s;
+                    opacity: 90%;                    
+                }
+                
+                .card__name {
+                    text-decoration: underline;
+                    text-decoration-color: $main-orange;
+                }
+                
+                .card__description, .card__learn-more {
+                    display: block;
+                    animation: info 0.5s;
+                }
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                // height: calc(var(--titleHeight) + 30px);
+                height: min-content;
+                display: flex;
+                align-items: center;
+                background-color: rgba(0, 0, 0, 0.3);
+                border-radius: 0 0 5px 5px;
+                // padding: 50px;
+            }
+        }
+    }
+}
+
+@keyframes info {
+    from {opacity: 0; transform: translateY(40px);}
+    to {opacity: 100%; transform: translateY(0);}
+}

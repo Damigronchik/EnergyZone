@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.footer {
+  width: 100%;
+  border-top: 3px #F67A45 solid;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+}
+.footer__info {
+  width: 1240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.footer__info .info-block, .footer__info .explore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: start;
+  gap: 20px;
+}
+.footer__info .info-block__title, .footer__info .explore__title {
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
+  margin-bottom: 5px;
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.footer__info .info-block__text, .footer__info .info-block__text_orange, .footer__info .info-block__link, .footer__info .explore__text, .footer__info .explore__text_orange, .footer__info .explore__link {
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
+  font-weight: 500;
+}
+.footer__info .info-block__text_orange, .footer__info .explore__text_orange {
+  color: #F67A45;
+}
+.footer__info .info-block__link, .footer__info .explore__link {
+  text-decoration: none;
+  transition: 0.3s;
+}
+.footer__info .info-block__link:hover, .footer__info .explore__link:hover {
+  border-left: 3px #F67A45 solid;
+  padding-left: 4px;
+  transition: 0.3s;
+}
+.footer__info .explore {
+  width: 188px;
+}
+.footer__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 210px;
+}
+.footer__logo-picture {
+  width: inherit;
+  height: inherit;
+}
+.footer__copyright {
+  border-top: 2px #2E2E2E solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 24px;
+  width: 100%;
+}
+.footer__copyright-text {
+  font-family: Exo, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+}/*# sourceMappingURL=footer.css.map */

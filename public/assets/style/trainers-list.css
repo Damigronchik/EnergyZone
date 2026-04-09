@@ -1,0 +1,269 @@
+@import url("https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap");
+@import 'header.css';
+@import 'footer.css';
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  background-color: #01010F;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+}
+
+.photo {
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  border-radius: 50px;
+}
+
+.list {
+  max-width: 1120px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px 100px;
+}
+
+.modal-window {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.15);
+  z-index: 1;
+}
+.modal-window__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 40px 60px;
+  height: auto;
+  background-color: #01010F;
+  border: 2px #F67A45 solid;
+  border-radius: 5px;
+  animation: modalopen 0.5s;
+}
+.modal-window__content.closing {
+  animation: modalclose 0.5s;
+}
+.modal-window__title {
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 4px #F67A45;
+  position: relative;
+}
+.modal-window__title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #01010F;
+  -webkit-text-stroke: 0;
+  z-index: 1;
+}
+.modal-window__title {
+  line-height: 100%;
+  max-width: 700px;
+}
+.modal-window__description {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  max-width: 700px;
+}
+.modal-window__buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+.modal-window__signup, .modal-window__goback, .modal-window__homepage, .modal-window__account {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  border: 2px #F67A45 solid;
+  padding: 10px 20px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.modal-window__signup:hover, .modal-window__goback:hover, .modal-window__homepage:hover, .modal-window__account:hover {
+  background-color: #F67A45;
+  outline: 2px #F67A45 solid;
+  outline-offset: 3px;
+  transition: 0.3s;
+}
+.modal-window__signup, .modal-window__homepage {
+  background-color: #F67A45;
+}
+.modal-window__close-icon {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.programs {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
+  width: 1240px;
+}
+.programs__title {
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 4px #F67A45;
+  position: relative;
+}
+.programs__title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #01010F;
+  -webkit-text-stroke: 0;
+  z-index: 1;
+}
+.programs {
+  align-items: center;
+}
+.programs__list {
+  max-width: 1120px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+.programs__list .card {
+  width: 500px;
+  height: 564px;
+  border-radius: 5px;
+  position: relative;
+  padding: 5px;
+}
+.programs__list .card__back-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  opacity: 70%;
+  position: relative;
+}
+.programs__list .card__info {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: end;
+  gap: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 0 0 15px 15px;
+}
+.programs__list .card__name {
+  font-family: Andika, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  z-index: 2;
+}
+.programs__list .card__description {
+  display: none;
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-size: 16px;
+}
+.programs__list .card__learn-more {
+  display: none;
+  background-color: transparent;
+  border: none;
+  font-family: "Alumni Sans", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #F67A45;
+}
+.programs__list .card__button {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.programs__list .card:hover {
+  outline: 3px #F67A45 solid;
+  outline-offset: 6px;
+  transition: 0.5s;
+}
+.programs__list .card:hover .card__back-img {
+  transition: 0.5s;
+  opacity: 90%;
+}
+.programs__list .card:hover .card__name {
+  text-decoration: underline;
+  text-decoration-color: #F67A45;
+}
+.programs__list .card:hover .card__description, .programs__list .card:hover .card__learn-more {
+  display: block;
+  animation: info 0.5s;
+}
+.programs__list .card::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: -moz-min-content;
+  height: min-content;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 0 0 5px 5px;
+}/*# sourceMappingURL=trainers-list.css.map */

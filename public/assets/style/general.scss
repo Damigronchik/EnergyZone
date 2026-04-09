@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap');
+@import 'header.css';
+@import 'footer.css';
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Andika, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: white;
+}
+
+$main-orange: #F67A45;
+$background: #01010F;
+
+@mixin title {
+    font-family: 'Alumni Sans', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    text-align: center;
+    color: transparent;
+    -webkit-text-stroke: 4px $main-orange;
+    position: relative;
+    
+    &::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: #01010F;
+        -webkit-text-stroke: 0;
+        z-index: 1;
+    }
+}
+
+@mixin main-text {
+    font-family: Andika, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: white;
+}   
+
+@mixin button {
+    @include main-text();
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000000;
+    border-radius: 5px;
+    border: 2px $main-orange solid;
+    padding: 10px 20px;
+    font-weight: 700;
+    transition: 0.3s;
+
+    &:hover {
+        background-color: $main-orange;
+        outline: 2px $main-orange solid;
+        outline-offset: 3px;
+        transition: 0.3s;
+    }
+}
+
+@mixin flex-block {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+    width: 1240px;
+
+    &__title {
+        @include title();
+    }
+}
+
+@mixin image {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+    background-color: #01010F;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+}

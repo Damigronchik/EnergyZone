@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@100..900&display=swap');
+@import 'general.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+$main-orange: #F67A45;
+
+@mixin flex-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@mixin header-text {
+    font-family: 'Alumni Sans', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: white;
+}
+
+.header {
+    max-width: 1240px;
+    width: 100%;
+    padding-top: 30px;
+    z-index: 2;
+    
+    &__logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 94px;
+        height: 110px;
+
+        &-picture {
+            width: inherit;
+            height: inherit;
+        }
+    }
+    
+    &__nav {
+        // @media (max-width: 768px) {
+        //     display: none;
+        // }
+        @include flex-header();
+        justify-content: space-between;
+    }
+    &__center-links {
+        @include flex-header();
+    }
+    &__menu {
+        @include flex-header();
+        gap: 40px;
+        list-style-type: none;
+        position: relative;
+    }
+    &__menu-item:hover {
+        transition: 0.5s;
+        text-decoration: underline;
+        text-decoration-color: $main-orange;
+        text-decoration-thickness: 3px;
+        text-underline-offset: 8px;
+    }
+    &__menu-item:nth-child(4) {
+        text-decoration: none;
+    }
+    &__menu-item:hover>&__menu {
+        display: flex;
+    }
+    &__menu-item_submenu>&__menu {
+        display: none;
+        text-decoration: none;
+        position: absolute;
+        flex-direction: column;
+        align-items: start;
+        gap: 5px;
+        border-left: 3px $main-orange solid;
+        padding: 0 0 5px 3px;
+        width: 196px;
+        animation: show-submenu 0.5s
+    }
+    &__link {
+        @include header-text();
+        text-decoration: none;
+        transition: 1.5s;
+    }
+    #accountButton {
+        margin-left: 50px;
+    }
+    
+    .registration, .login {
+        display: none;
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.15);
+        z-index: 1;
+        
+        &__content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 40px 60px;
+            height: auto;
+            background-color: $background;
+            border: 2px $main-orange solid;
+            border-radius: 5px;
+            animation: modalopen 0.5s;
+
+            &.closing {
+                animation: modalclose 0.5s;
+            }
+        }
+        &__title {
+            @include title;
+        }
+        &__label {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: 5px;
+            @include main-text;
+            font-weight: 700;
+            position: relative;
+        }
+        &__input {
+            @include main-text();
+            font-size: 16px;
+            width: 400px;
+            height: 48px;
+            padding-left: 15px;
+            background-color: transparent;
+            outline: 2px #2E2E2E solid;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 3px 4px 8px rgba(white, 0.15);
+            outline: none;
+            position: relative;
+            
+            &::placeholder {
+                @include main-text();
+                font-size: 16px;
+                color: rgba(255, 255, 255, 0.7);
+            }
+            &:focus {
+                outline: 2px $main-orange solid;
+            }
+        }
+        &__input_error {
+            outline: 2px red solid;
+        }
+        &__show-password {
+            position: absolute;
+            top: 48px;
+            left: 365px;
+            width: 32.5px;
+            height: 27px;
+            opacity: 70%;
+            transition: 0.2s;
+
+            &:hover {
+                opacity: 100%;
+                transition: 0.2s
+            }
+        }
+        &__error {
+            @include main-text;
+            color: red;
+            font-size: 14px;
+        }
+        &__prompt {
+            @include main-text;
+            font-size: 16px;
+
+            &_orange {
+                @include main-text;
+                font-size: inherit;
+                color: $main-orange;
+
+                &:hover {
+                    text-decoration: underline $main-orange;
+                    cursor: pointer;
+                }
+            }
+        }
+        &__done {
+            @include button;
+            font-size: 16px;
+        }
+        &__close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+    }
+}
+
+@keyframes show-submenu {
+    from {opacity: 0; transform: translateY(-10px);}
+    to {opacity: 100%; transform: translateY(0);}
+}
+
+@keyframes modalopen {
+    from {opacity: 0; transform: translateY(-100px)}
+    to {opacity: 100%; transform: translateY(0)}
+}
+@keyframes modalclose {
+    from {opacity: 100%; transform: translateY(0)}
+    to {opacity: 0; transform: translateY(-100px)}
+}

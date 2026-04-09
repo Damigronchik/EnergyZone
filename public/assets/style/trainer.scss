@@ -1,0 +1,225 @@
+@import 'general.scss';
+
+section {
+    @include flex-block;
+}
+//
+.modal-window {
+    display: none;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.15);
+    z-index: 1;
+    
+    &__content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 40px 60px;
+        height: auto;
+        background-color: $background;
+        border: 2px $main-orange solid;
+        border-radius: 5px;
+        animation: modalopen 0.5s;
+
+        &.closing {
+            animation: modalclose 0.5s;
+        }
+    }
+    &__title {
+        @include title;
+        line-height: 100%;
+        max-width: 700px;
+    }
+    &__description {
+        @include main-text;
+        font-weight: 700;
+        text-align: center;
+        max-width: 700px;
+    }
+    &__buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 30px;
+    }
+    &__signup, &__goback, &__homepage, &__account {
+        @include button;
+    }
+    &__signup, &__homepage {
+        background-color: $main-orange;
+    }
+    &__close-icon {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+}
+//
+.program-header {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: start;
+    position: relative;
+    
+    // &:after {
+    //     content: '';
+    //     position: absolute;
+    //     z-index: 0;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     height: 600px;
+    //     background-color: rgba(0, 0, 0, 0.25)
+    // }
+    
+    &__back-img {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        opacity: 50%;
+    }
+    &__title {
+        @include title;
+        position: absolute;
+        -webkit-text-stroke: 3px $main-orange;
+        line-height: 94.5%;
+        font-size: 96px;
+        z-index: 1;
+        margin: 0 0 45px 7%;
+        text-decoration: underline;
+        text-decoration-color: $main-orange;
+        text-decoration-thickness: 5px;
+        text-underline-offset: 19px;
+        
+        &:after {
+            color: transparent;
+        }
+    }
+}
+
+.info {
+    @include flex-block;
+    gap: 40px;
+
+    &__block {
+        @include flex-block;
+        gap: 10px;
+    }
+    &__name {
+        @include main-text;
+        font-weight: 700;
+        color: $main-orange;
+    }
+    &__text_without-list-style {
+        list-style: none;
+        .info__label {
+            margin: 0;
+        }
+    }
+    &__label {
+        @include main-text;
+        margin-left: 25px;
+
+        &::marker {
+            color: $main-orange;
+        }
+    }
+    &__label_no-margin {
+        margin: 0;
+    }
+
+    &__button {
+        @include button;
+    }
+}
+
+.other-programs {
+    @include flex-block;
+
+    &__cards {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+
+        .card {
+            width: 284px;
+            height: 308px;
+            border-radius: 5px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                // height: calc(var(--titleHeight) + 30px);
+                height: min-content;
+                display: flex;
+                align-items: center;
+                background-color: rgba(0, 0, 0, 0.3);
+                border-radius: 0 0 5px 5px;
+                // padding: 50px;
+            }
+            &:hover {
+                outline: 3px $main-orange solid;
+                outline-offset: 6px;
+                transition: 0.5s;
+                
+                .card__background-image {
+                    opacity: 90%;
+                }
+                
+                .card__title {
+                    text-decoration: underline;
+                    text-decoration-color: $main-orange;
+                    text-underline-offset: 4px;
+                }
+            }
+            
+            &__background-image {
+                opacity: 70%;
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+                position: relative;
+            }
+            &__title {
+                position: absolute;
+                font-weight: 700;
+                z-index: 2;
+                bottom: 0;
+                left: 0;
+                margin: 0 0 10px 10px;
+            }
+            &__button {
+                background-color: transparent;
+                border: none;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+}

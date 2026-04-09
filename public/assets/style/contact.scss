@@ -1,0 +1,203 @@
+@import 'general.scss';
+
+.contact-us {
+    @include flex-block();
+    gap: 20px;
+
+    .form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 20px;
+        
+        &__inputs-and-info {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            .info {
+                height: 383px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+
+                &__block {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 1px;
+                }
+                &__image {
+                    height: 77px;
+                }
+                &__name {
+                    font-family: 'Alumni Sans', sans-serif;
+                    font-size: 48px;
+                    font-weight: 400;
+                    color: $main-orange;
+                    text-align: center;
+                }
+                &__text {
+                    @include main-text();
+                }
+            }
+        }
+        &__input-fields {
+            width: 610px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        &__label {
+            @include main-text();
+            font-size: 24px;
+            font-weight: 700;
+        }
+        &__input {
+            @include main-text();
+            width: 591px;
+            height: 52px;
+            padding-left: 15px;
+            background-color: #00000000;
+            outline: 2px #2E2E2E solid;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            margin-bottom: -5px;
+
+            &::placeholder {
+                @include main-text();
+                color: rgba(255, 255, 255, 0.7);
+            }
+            &:focus {
+                outline: 2px $main-orange solid;
+            }
+        }
+        &__input_error {
+            outline: 2px red solid;
+        }
+        &__input_big {
+            padding-top: 10px;
+            height: 112px;
+            margin-bottom: -12px;
+        }
+        &__error {
+            @include main-text;
+            color: red;
+            font-size: 14px;
+        }
+
+        &__agreement{
+            @include main-text();
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        &__checkbox {
+            margin-right: 8px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            appearance: none;
+            width: 19px;
+            height: 19px;
+            border: 2px solid $main-orange;
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+
+            &:checked {
+                background-color: $main-orange;
+                border-color: $main-orange;
+
+                &::after {
+                    content: "✔";
+                    position: absolute;
+                    color: white;
+                    font-size: 16px;
+                    left: 1px;
+                    top: -7px;
+                }
+            }
+        }
+        &__button {
+            @include button();
+        }
+    }
+
+    .modal-window {
+        display: none;
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.15);
+        z-index: 1;
+        
+        &__content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 40px 60px;
+            height: auto;
+            background-color: $background;
+            border: 2px $main-orange solid;
+            border-radius: 5px;
+            animation: modalopen 0.5s;
+
+            &.closing {
+                animation: modalclose 0.5s;
+            }
+        }
+        &__title {
+            @include title;
+        }
+        &__text {
+            @include main-text;
+            font-weight: 700;
+            text-align: center;
+            width: 569px;
+        }
+        &__buttons {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 30px;
+        }
+        &__homepage, &__close {
+            @include button;
+        }
+        &__homepage {
+            background-color: $main-orange;
+        }
+        &__close-icon {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+    }
+}
+
+@keyframes modalopen {
+    from {opacity: 0; transform: translateY(-100px)}
+    to {opacity: 100%; transform: translateY(0)}
+}
+@keyframes modalclose {
+    from {opacity: 100%; transform: translateY(0)}
+    to {opacity: 0; transform: translateY(-100px)}
+}

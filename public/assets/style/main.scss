@@ -1,0 +1,232 @@
+@import 'general.scss';
+
+.header {
+    position: absolute;
+}
+
+.welcome {
+    background-image: url(../images/welcome_image.png);
+    @include image;
+    min-height: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    &__title {
+        @include title();
+        -webkit-text-stroke: 3px $main-orange;
+        line-height: 94.5%;
+        font-size: 96px;
+        max-width: 940px;
+        margin-top: 309px;
+    }
+    &__title::after {
+        color: transparent;
+    }
+    &__label {
+        max-width: 1130px;
+        text-align: center
+    }
+    &__button {
+        @include button();
+        margin-top: 20px;
+    }
+}
+
+.programs {
+    @include flex-block();
+
+    &__cards {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+
+        .card {
+            width: 284px;
+            height: 308px;
+            border-radius: 5px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                // height: calc(var(--titleHeight) + 30px);
+                height: min-content;
+                display: flex;
+                align-items: center;
+                background-color: rgba(0, 0, 0, 0.3);
+                border-radius: 0 0 5px 5px;
+                // padding: 50px;
+            }
+            &:hover {
+                outline: 3px $main-orange solid;
+                outline-offset: 6px;
+                transition: 0.5s;
+                
+                .card__background-image {
+                    opacity: 90%;
+                }
+                
+                .card__title {
+                    text-decoration: underline;
+                    text-decoration-color: $main-orange;
+                    text-underline-offset: 4px;
+                }
+            }
+            
+            &__background-image {
+                opacity: 70%;
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+                position: relative;
+            }
+            &__title {
+                position: absolute;
+                font-weight: 700;
+                z-index: 2;
+                bottom: 0;
+                left: 0;
+                margin: 0 0 10px 10px;
+            }
+            &__button {
+                background-color: transparent;
+                border: none;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+}
+
+.advantages {
+    width: 1240px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+
+    .advantage {
+        background-image: url(../image/advantage_back.png);
+        @include image;
+        // width: 390px;
+        padding: 26px 58px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
+
+        &__number {
+            @include title();
+            -webkit-text-stroke-color: white;
+        }
+        &__line {
+            width: 2px;
+            height: 96px;
+            background-color: $main-orange;
+        }
+        &__label {
+            @include title();
+            -webkit-text-stroke-color: white;
+            font-size: 40px;
+            max-width: 158px;
+            text-align: left;
+        }
+    }
+}
+
+.subscriptions {
+    @include flex-block();
+
+    &__cards {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: start;
+        flex-wrap: wrap;
+        row-gap: 20px;
+        
+        .card {
+            box-sizing: content-box;
+            min-height: 380px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            width: 360px;
+            padding: 10px 20px 20px;
+            border: 1px $main-orange solid;
+            border-radius: 5px;
+
+            &__info {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                align-items: center;
+            }
+            &__title {
+                font-family: 'Alumni Sans', sans-serif;
+                font-weight: 700;
+                font-size: 48px;
+                text-align: center;
+            }
+            &__period {
+                text-align: center;
+            }
+            &__price {
+                @include title();
+                font-size: 40px;
+                -webkit-text-stroke-width: 2px;
+            }
+            &__line {
+                width: 100%;
+                height: 1px;
+                margin-top: 15px;
+                background-color: $main-orange;
+            }
+            &__advantages {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                gap: 15px;
+            }
+            &__advantage {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 8px;
+
+                img {
+                    width: 16px;
+                }
+                p {
+                    font-weight: 400;
+                    font-size: 16px;
+                }
+            }
+            &__button {
+                @include button();
+            }
+            &__purchased {
+                margin-bottom: 12px;
+            }
+        }
+    }
+}

@@ -1,0 +1,49 @@
+@import 'general.scss';
+
+.error {
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__num {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .number {
+            font-family: 'Alumni Sans', sans-serif;
+            font-weight: 700;
+            font-size: 400px;
+            text-align: center;
+            color: transparent;
+            -webkit-text-stroke: 12px $main-orange;
+            position: relative;
+            
+            &::after {
+                content: attr(data-text);
+                position: absolute;
+                top: 0;
+                left: 0;
+                color: #01010F;
+                -webkit-text-stroke: 0;
+                z-index: 1;
+            }
+        }
+    }
+    &__something {
+        @include main-text;
+        margin-bottom: 10px;
+    }
+
+    button {
+        @include button;
+        margin-bottom: 40px;
+
+        a {
+            text-decoration: none;
+        }
+    }
+}

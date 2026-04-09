@@ -1,0 +1,165 @@
+@import 'general.scss';
+
+.schedule {
+    @include flex-block;
+
+    .schedule-table {
+        width: 100%;
+        border-spacing: 0;
+        border-collapse: collapse;
+        table-layout: fixed;
+        
+        &__weekday, &__cell {
+            @include main-text;
+            font-size: 16px;
+            border: 1px rgba(255, 255, 255, 0.5) solid;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        &__weekday {
+            line-height: 1.2;
+            padding-block: 12px;
+            border-bottom: 3px white solid;
+            
+            img {
+                width: 20px;
+                vertical-align: middle;
+            }
+            &:first-child {
+                width: 71px;
+            }
+        }
+        &__cell {
+            height: 62px;
+
+            form {
+                width: 100%;
+                height: 100%;
+                
+                .active-training, .new-training {
+                    @include main-text;
+                    font-size: 16px;
+                    padding-inline: 4px;
+                    width: 100%;
+                    height: 100%;
+                    background-color: transparent;
+                    border: none;
+                    line-height: 134%;
+                    transition: 0.4s;
+    
+                    &:hover {
+                        background-color: $main-orange;
+                        transition: 0.4s;
+                        font-weight: 700;
+                    }
+                }
+                .disable-training {
+                    @include main-text;
+                    color: rgba(255, 255, 255, 0.5);
+                    font-size: 16px;
+                    padding-inline: 4px;
+                    width: 100%;
+                    height: 100%;
+                    background-color: transparent;
+                    border: none;
+                    line-height: 134%;
+                }
+                .new-training {
+                    color: transparent;
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+            }
+            
+        }
+
+        &__weekday_today, &__cell_today, &__cell_today-last {
+            border-left: 4px $main-orange solid;
+            border-right: 4px $main-orange solid;
+        }
+        &__weekday_today {
+            border-top: 3px $main-orange solid;
+        }
+        &__cell_today-last {
+            border-bottom: 3px $main-orange solid;
+        }
+        &__cell_orange {
+            color: $main-orange;
+            font-size: 18px;
+        }
+    }
+
+    .modal-window {
+        display: none;
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.15);
+        z-index: 1;
+        
+        &__content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 40px 60px;
+            height: auto;
+            background-color: $background;
+            border: 2px $main-orange solid;
+            border-radius: 5px;
+            animation: modalopen 0.5s;
+    
+            &.closing {
+                animation: modalclose 0.5s;
+            }
+        }
+        &__title {
+            @include title;
+            line-height: 100%;
+            max-width: 700px;
+        }
+        &__description {
+            @include main-text;
+            font-weight: 700;
+            text-align: center;
+            max-width: 700px;
+        }
+        &__buttons {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 30px;
+        }
+        &__signup, &__goback, &__homepage, &__account {
+            @include button;
+        }
+        &__signup, &__homepage {
+            background-color: $main-orange;
+        }
+        &__close-icon {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+    }
+}
+
+@keyframes modalopen {
+    from {opacity: 0; transform: translateY(-100px)}
+    to {opacity: 100%; transform: translateY(0)}
+}
+@keyframes modalclose {
+    from {opacity: 100%; transform: translateY(0)}
+    to {opacity: 0; transform: translateY(-100px)}
+}

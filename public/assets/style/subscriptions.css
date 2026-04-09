@@ -1,0 +1,265 @@
+@import url("https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap");
+@import 'header.css';
+@import 'footer.css';
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  background-color: #01010F;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+}
+
+.modal-window {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.15);
+  z-index: 1;
+}
+.modal-window__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 40px 60px;
+  height: auto;
+  background-color: #01010F;
+  border: 2px #F67A45 solid;
+  border-radius: 5px;
+  animation: modalopen 0.5s;
+}
+.modal-window__content.closing {
+  animation: modalclose 0.5s;
+}
+.modal-window__title {
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 4px #F67A45;
+  position: relative;
+}
+.modal-window__title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #01010F;
+  -webkit-text-stroke: 0;
+  z-index: 1;
+}
+.modal-window__title {
+  line-height: 100%;
+  max-width: 700px;
+}
+.modal-window__description {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  max-width: 700px;
+}
+.modal-window__buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+.modal-window__signup, .modal-window__goback, .modal-window__homepage, .modal-window__account {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  border: 2px #F67A45 solid;
+  padding: 10px 20px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.modal-window__signup:hover, .modal-window__goback:hover, .modal-window__homepage:hover, .modal-window__account:hover {
+  background-color: #F67A45;
+  outline: 2px #F67A45 solid;
+  outline-offset: 3px;
+  transition: 0.3s;
+}
+.modal-window__signup, .modal-window__homepage {
+  background-color: #F67A45;
+}
+.modal-window__close-icon {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.subscriptions {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
+  width: 1240px;
+}
+.subscriptions__title {
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 4px #F67A45;
+  position: relative;
+}
+.subscriptions__title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #01010F;
+  -webkit-text-stroke: 0;
+  z-index: 1;
+}
+.subscriptions__cards {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+  row-gap: 20px;
+}
+.subscriptions__cards .card {
+  min-height: 400px;
+  box-sizing: content-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 360px;
+  padding: 10px 20px 20px;
+  border: 1px #F67A45 solid;
+  border-radius: 5px;
+}
+.subscriptions__cards .card__info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+.subscriptions__cards .card__title {
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  text-align: center;
+}
+.subscriptions__cards .card__period {
+  text-align: center;
+}
+.subscriptions__cards .card__price {
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 4px #F67A45;
+  position: relative;
+}
+.subscriptions__cards .card__price::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #01010F;
+  -webkit-text-stroke: 0;
+  z-index: 1;
+}
+.subscriptions__cards .card__price {
+  font-size: 40px;
+  -webkit-text-stroke-width: 2px;
+}
+.subscriptions__cards .card__line {
+  width: 100%;
+  height: 1px;
+  margin-top: 15px;
+  background-color: #F67A45;
+}
+.subscriptions__cards .card__advantages {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 15px;
+}
+.subscriptions__cards .card__advantage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.subscriptions__cards .card__advantage img {
+  width: 16px;
+}
+.subscriptions__cards .card__advantage p {
+  font-weight: 400;
+  font-size: 16px;
+}
+.subscriptions__cards .card__button {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  border: 2px #F67A45 solid;
+  padding: 10px 20px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.subscriptions__cards .card__button:hover {
+  background-color: #F67A45;
+  outline: 2px #F67A45 solid;
+  outline-offset: 3px;
+  transition: 0.3s;
+}
+.subscriptions__cards .card__purchased {
+  margin-bottom: 12px;
+}/*# sourceMappingURL=subscriptions.css.map */
