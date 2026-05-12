@@ -2,7 +2,7 @@
 
 <main>
     <section class="programs">
-        <h1 class="programs__title">Тренера</h1>
+        <h1 class="programs__title">Тренеры</h1>
         <div class="list">
         <?php
         $trainer_query = "SELECT id, name, photo FROM trainers";

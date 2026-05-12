@@ -1,11 +1,19 @@
 @import 'general.scss';
 
 // убрат
-.photo {
-    width: 100px;
-    height: 100px;
-    background-size: contain;
-    border-radius: 50px; 
+.trainer {
+    .photo {
+        transition: 0.3s;
+        width: 100px;
+        height: 100px;
+        background-size: contain;
+        border-radius: 50px;
+    }
+    &:hover {
+        .photo {
+            outline: 2px $main-orange solid; 
+        }
+    }
 }
 .admin-title {
     margin-top: 200px;
@@ -16,65 +24,7 @@ textarea {
     min-height: 200px;
 }
 .modal-window {
-    display: none;
-    position: fixed;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.15);
-    z-index: 1;
-    
-    &__content {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-        padding: 40px 60px;
-        height: auto;
-        background-color: $background;
-        border: 2px $main-orange solid;
-        border-radius: 5px;
-        animation: modalopen 0.5s;
-
-        &.closing {
-            animation: modalclose 0.5s;
-        }
-    }
-    &__title {
-        @include title;
-        line-height: 100%;
-        max-width: 700px;
-    }
-    &__description {
-        @include main-text;
-        font-weight: 700;
-        text-align: center;
-        max-width: 700px;
-    }
-    &__buttons {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 30px;
-    }
-    &__signup, &__goback, &__homepage, &__account {
-        @include button;
-    }
-    &__signup, &__homepage {
-        background-color: $main-orange;
-    }
-    &__close-icon {
-        position: absolute;
-        top: 25px;
-        right: 25px;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-    }
+    @include modal-window;
 }
 //
 
@@ -131,14 +81,36 @@ textarea {
     @include flex-block;
     gap: 40px;
 
+    &__blocks {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    &__left-blocks {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
     &__block {
-        @include flex-block;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
         gap: 10px;
     }
     &__name {
         @include main-text;
+        font-size: 24px;
         font-weight: 700;
         color: $main-orange;
+    }
+    &__text {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        &-small {
+            gap: 5px;
+        }
     }
     &__text_without-list-style {
         list-style: none;
@@ -154,13 +126,40 @@ textarea {
             color: $main-orange;
         }
     }
+    &__input {
+        @include main-text();
+        width: 100%;
+        height: 40px;
+        padding-inline: 10px;
+        background-color: transparent;
+        outline: 2px #2E2E2E solid;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 3px 4px 8px rgba(white, 0.15);
+
+        &::placeholder {
+            @include main-text();
+            color: rgba(255, 255, 255, 0.7);
+        }
+        &:focus {
+            outline: 2px $main-orange solid;
+        }
+        &_big {
+            min-height: 100px;
+        }
+    }
     &__label_no-margin {
         margin: 0;
     }
 
     &__button {
         @include button;
+        margin-top: 10px;
     }
+}
+.delete-button {
+    margin-top: -94px;
+    margin-left: 170px;
 }
 
 .other-programs {

@@ -16,6 +16,26 @@ html {
   color: white;
 }
 
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+}
+@keyframes modalclose {
+  from {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
 body {
   display: flex;
   flex-direction: column;
@@ -79,9 +99,6 @@ main {
   text-decoration-color: #F67A45;
   text-decoration-thickness: 3px;
   text-underline-offset: 8px;
-}
-.header__menu-item:nth-child(4) {
-  text-decoration: none;
 }
 .header__menu-item:hover > .header__menu {
   display: flex;

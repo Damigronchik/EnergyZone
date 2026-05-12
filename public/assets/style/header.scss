@@ -63,9 +63,6 @@ $main-orange: #F67A45;
         text-decoration-thickness: 3px;
         text-underline-offset: 8px;
     }
-    &__menu-item:nth-child(4) {
-        text-decoration: none;
-    }
     &__menu-item:hover>&__menu {
         display: flex;
     }

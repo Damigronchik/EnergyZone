@@ -16,7 +16,10 @@ if ($trainer) {
 
     $birth = new DateTime($row[3]);
     $today = new DateTime('today');
-    $age = $birth->diff($today);
+    $age = $birth->diff($today)->y;
+    if ($age % 10 == 1) { $age_text = ' год'; }
+    elseif ($age % 10 == 2 || $age % 10 == 3 || $age % 10 == 4) { $age_text = ' года'; }
+    else { $age_text = ' лет'; }
 }
 
 $all_programs_result = mysqli_query($link, "SELECT name FROM training_programs");
@@ -37,24 +40,25 @@ function getPrograms($result, $field_name) {
 ?>
 
 <main>
-    <section>
+    <section class="account">
         <h2 class="account__title">Мои данные</h2>
-        <div class="flex gap-4">
-            <img src="<?= IMG_PATH . $row[2] ?>">
-            <div class="flex flex-col gap-1">
-                <p><?= $row[1] ?></p>
-                <p>Возраст: <?= $age->y ?></p>
-                <p class="mt-2 mb-2"><?= $row[4] ?></p>
-                <div class="flex flex-col gap-1">
-                    <p>Преподаваемые программы тренировок:</p>
-                    <?php foreach ($trainer_programs as $program): ?>
-                    <form action="index.php?page=training-program" method="post">
-                        <button class="flex items-center gap-4" type="submit">
-                            <input type="hidden" name="training_name" value="<?= $program ?>">
-                            <p><?= $program ?></p>
-                        </button>
-                    </form>
-                    <?php endforeach ?>
+        <div class="trainer">
+            <img class="trainer__photo" src="<?= IMG_PATH . $row[2] ?>">
+            <div class="trainer__info">
+                <p class="trainer__name"><?= $row[1] ?> (<?= $age . $age_text ?>)</p>
+                <p class="trainer__biography"><?= $row[4] ?></p>
+                <div class="trainer-programs">
+                    <p class="trainer-programs__title">Преподаваемые программы тренировок:</p>
+                    <div class="trainer-programs__trainings">
+                        <?php foreach ($trainer_programs as $program): ?>
+                        <form action="index.php?page=training-program" method="post">
+                            <button class="trainer-programs__training" type="submit">
+                                <input type="hidden" name="training_name" value="<?= $program ?>">
+                                <p><?= $program ?></p>
+                            </button>
+                        </form>
+                        <?php endforeach ?>
+                    </div>
                 </div>
             </div>
         </div>

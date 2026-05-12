@@ -15,6 +15,26 @@ html {
   color: white;
 }
 
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+}
+@keyframes modalclose {
+  from {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
 body {
   display: flex;
   flex-direction: column;

@@ -4,7 +4,7 @@ if (!isset($_SESSION['in_account']) || !isset($_SESSION['user_mail'])) {
     header('Location: index.php?page=main');
 }
 
-$scripts[] = JS_PATH . 'signup_for_training.js'; 
+$scripts[] = JS_PATH . 'modalWindow.js'; 
 $scripts[] = JS_PATH . 'editData.js'; 
 
 require SRC_PATH . 'user/user-trainings_check.php'; 
@@ -37,7 +37,7 @@ function getPrograms($result, $field_name) {
         <h1 class="trainings__title">Ближайшие тренировки</h1>
         <div class="trainings__all">
             <?php
-                $user_train_query = "SELECT * FROM user_trainings WHERE user_mail = '$user_mail'";
+                $user_train_query = "SELECT * FROM user_trainings WHERE user_mail = '$user_mail' ORDER BY training_datetime";
                 $user_train_result = mysqli_query($link, $user_train_query);
 
                 if ($user_train_result) {
@@ -55,7 +55,7 @@ function getPrograms($result, $field_name) {
                         for ($i = 0; $i < $user_train_rows; $i++) {
                             echo '<div class="trainings__info">';
                             $user_train_row = mysqli_fetch_row($user_train_result);
-                            $trainings_result = mysqli_query($link, "SELECT * FROM training_schedule WHERE id = $user_train_row[2]");
+                            $trainings_result = mysqli_query($link, "SELECT * FROM all_training_schedule WHERE id = $user_train_row[2]");
             
                             if ($trainings_result) {
                                 $row = mysqli_fetch_row($trainings_result);
@@ -73,7 +73,7 @@ function getPrograms($result, $field_name) {
                                 <p class="trainings__label"><span class="trainings__name">Дата:</span> <?= $train_datetime->format('d.m.Y') ?> (<?= $weekday_in_russian[$row[1]] ?>)</p>
                                 <form method="post">
                                     <input type="hidden" name="user_train_id" value="<?= $user_train_row[0] ?>">
-                                    <button type="submit">Отменить запись</button>
+                                    <button class="trainings__cancel" type="submit">Отменить запись</button>
                                 </form>
 
                                 <?php
@@ -115,11 +115,12 @@ function getPrograms($result, $field_name) {
                         $sub_programs = getPrograms($sub_programs_result, 'training_name');
                         ?>
                         <div class="card" action="index.php?action=user/get_sub" method="post">
-                            <div class="card__info">
-                                <h6><?= $sub_name ?></h6>
+                            <div class="card__main-info">
+                                <h6 class="card__title"><?= $sub_name ?></h6>
                                 <div class="card__line"></div>
                             </div>
                             <div class="card__advantages">
+                                <span class="card__include">Абонемент включает:</span>
                                 <?php
                                 foreach ($sub_programs as $program): ?>
                                     <div class="card__advantage">
@@ -129,7 +130,7 @@ function getPrograms($result, $field_name) {
                                 <?php endforeach; ?>
                             </div>
 
-                            <p>Действителен до <?= $end_date ?></p>
+                            <p class="card__end-date">Действителен до <?= $end_date ?></p>
                         </div>
                     <?php endfor;
                 endif;
@@ -185,7 +186,7 @@ function getPrograms($result, $field_name) {
                         for ($i = 0; $i < $user_train_rows; $i++) {
                             echo '<div class="trainings__info">';
                             $user_train_row = mysqli_fetch_row($user_train_result);
-                            $trainings_result = mysqli_query($link, "SELECT * FROM training_schedule WHERE id = $user_train_row[2]");
+                            $trainings_result = mysqli_query($link, "SELECT * FROM all_training_schedule WHERE id = $user_train_row[2]");
             
                             if ($trainings_result) {
                                 $row = mysqli_fetch_row($trainings_result);

@@ -17,8 +17,7 @@
                     <img class="card__back-img" src="<?= IMG_PATH . $row[1] ?>">
                     <div class="card__info">
                         <h4 class="card__name"><?= $row[0] ?></h4>
-                        <p class="card__description"> <?= $row[2] ?></p>
-                        <button class="card__learn-more">Подробнее</button>
+                        <p class="card__description"> <?= mb_substr($row[2], 0, 120) . '...' ?></p>
                     </div>
                     <button class="card__button" type="submit"></button>
                 </form>

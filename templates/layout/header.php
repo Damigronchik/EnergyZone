@@ -26,8 +26,8 @@
                     ],
                     'Абонементы' => "index.php?page=subscriptions",
                     'Занятия' => [
-                        'Список программ' => "index.php?page=programs-list",
                         'Расписание занятий' => "index.php?page=training-schedule",
+                        'Список программ' => "index.php?page=programs-list",
                         'Тренера' => "index.php?page=trainers-list",
                     ],
                 ];

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap");
 @import 'header.css';
@@ -15,6 +16,26 @@ html {
   color: white;
 }
 
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+}
+@keyframes modalclose {
+  from {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
 body {
   display: flex;
   flex-direction: column;
@@ -31,11 +52,15 @@ main {
   gap: 80px;
 }
 
-.photo {
+.trainer .photo {
+  transition: 0.3s;
   width: 100px;
   height: 100px;
   background-size: contain;
   border-radius: 50px;
+}
+.trainer:hover .photo {
+  outline: 2px #F67A45 solid;
 }
 
 .admin-title {
@@ -58,14 +83,15 @@ textarea {
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.15);
-  z-index: 1;
+  z-index: 3;
 }
 .modal-window__content {
+  max-width: 750px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
   padding: 40px 60px;
   height: auto;
   background-color: #01010F;
@@ -97,6 +123,14 @@ textarea {
 .modal-window__title {
   line-height: 100%;
   max-width: 700px;
+  margin-bottom: 10px;
+}
+.modal-window__form {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 .modal-window__description {
   font-family: Andika, sans-serif;
@@ -107,11 +141,62 @@ textarea {
   text-align: center;
   max-width: 700px;
 }
-.modal-window__buttons {
+.modal-window__label {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.modal-window__input {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  width: 100%;
+  height: 40px;
+  padding-inline: 10px;
+  background-color: transparent;
+  outline: 2px #2E2E2E solid;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 3px 4px 8px rgba(255, 255, 255, 0.15);
+  margin-top: 10px;
+}
+.modal-window__input::-moz-placeholder {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  color: rgba(255, 255, 255, 0.7);
+}
+.modal-window__input::placeholder {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  color: rgba(255, 255, 255, 0.7);
+}
+.modal-window__input:focus {
+  outline: 2px #F67A45 solid;
+}
+.modal-window__input_big {
+  min-height: 100px;
+}
+.modal-window__option {
+  color: black;
+}
+.modal-window__buttons, .modal-window__buttons > div {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 30px;
+  margin-top: 10px;
 }
 .modal-window__signup, .modal-window__goback, .modal-window__homepage, .modal-window__account {
   font-family: Andika, sans-serif;
@@ -144,6 +229,45 @@ textarea {
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+.modal-window .agreement {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.modal-window .checkbox {
+  margin-right: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 19px;
+  height: 19px;
+  border: 2px solid #F67A45;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+.modal-window .checkbox:checked {
+  background-color: #F67A45;
+  border-color: #F67A45;
+}
+.modal-window .checkbox:checked::after {
+  content: "✔";
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  left: 1px;
+  top: -7px;
 }
 
 .header {
@@ -227,32 +351,20 @@ textarea {
 .info {
   gap: 40px;
 }
+.info__blocks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.info__left-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
 .info__block {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: 20px;
-  width: 1240px;
-}
-.info__block__title {
-  font-family: "Alumni Sans", sans-serif;
-  font-weight: 700;
-  font-size: 64px;
-  text-align: center;
-  color: transparent;
-  -webkit-text-stroke: 4px #F67A45;
-  position: relative;
-}
-.info__block__title::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: #01010F;
-  -webkit-text-stroke: 0;
-  z-index: 1;
-}
-.info__block {
   gap: 10px;
 }
 .info__name {
@@ -260,8 +372,17 @@ textarea {
   font-weight: 400;
   font-size: 20px;
   color: white;
+  font-size: 24px;
   font-weight: 700;
   color: #F67A45;
+}
+.info__text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.info__text-small {
+  gap: 5px;
 }
 .info__text_without-list-style {
   list-style: none;
@@ -278,6 +399,40 @@ textarea {
 }
 .info__label::marker {
   color: #F67A45;
+}
+.info__input {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  width: 100%;
+  height: 40px;
+  padding-inline: 10px;
+  background-color: transparent;
+  outline: 2px #2E2E2E solid;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 3px 4px 8px rgba(255, 255, 255, 0.15);
+}
+.info__input::-moz-placeholder {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  color: rgba(255, 255, 255, 0.7);
+}
+.info__input::placeholder {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  color: rgba(255, 255, 255, 0.7);
+}
+.info__input:focus {
+  outline: 2px #F67A45 solid;
+}
+.info__input_big {
+  min-height: 100px;
 }
 .info__label_no-margin {
   margin: 0;
@@ -302,6 +457,14 @@ textarea {
   outline: 2px #F67A45 solid;
   outline-offset: 3px;
   transition: 0.3s;
+}
+.info__button {
+  margin-top: 10px;
+}
+
+.delete-button {
+  margin-top: -94px;
+  margin-left: 170px;
 }
 
 .other-programs {

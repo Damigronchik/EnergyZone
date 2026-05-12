@@ -13,64 +13,11 @@
     gap: 50px 100px;
 }
 .modal-window {
-    display: none;
-    position: fixed;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.15);
-    z-index: 1;
-    
-    &__content {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-        padding: 40px 60px;
-        height: auto;
-        background-color: $background;
-        border: 2px $main-orange solid;
-        border-radius: 5px;
-        animation: modalopen 0.5s;
+    @include modal-window;
 
-        &.closing {
-            animation: modalclose 0.5s;
-        }
-    }
-    &__title {
-        @include title;
-        line-height: 100%;
-        max-width: 700px;
-    }
-    &__description {
-        @include main-text;
-        font-weight: 700;
-        text-align: center;
-        max-width: 700px;
-    }
-    &__buttons {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 30px;
-    }
-    &__signup, &__goback, &__homepage, &__account {
-        @include button;
-    }
-    &__signup, &__homepage {
-        background-color: $main-orange;
-    }
-    &__close-icon {
-        position: absolute;
-        top: 25px;
-        right: 25px;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
+    &__goback {
+        margin-top: 10px;
+        align-self: center;
     }
 }
 // до сюда
@@ -80,6 +27,13 @@
     @include flex-block;
     align-items: center;
     
+    &__header {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;        
+    }
     &__list {
         max-width: 1120px;
         display: flex;
@@ -181,5 +135,9 @@
                 // padding: 50px;
             }
         }
+    }
+    
+    .add-button {
+        @include button;
     }
 }

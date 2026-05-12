@@ -1,7 +1,7 @@
 <?php
 $operation = $_POST['operation'] ?? null;
 $new_name = $_POST['title'] ?? null;
-$descr =  mysqli_real_escape_string($link, $_POST['description']) ?? null;
+$descr = isset($_POST['description']) ? mysqli_real_escape_string($link, $_POST['description']) : null;
 
 switch ($operation) {
     case 'create':  
@@ -45,6 +45,7 @@ switch ($operation) {
 
     case 'delete':
         $old_name = $_POST['old_title'];
+        echo $old_name;
         $old_images = mysqli_query($link, "SELECT image, header_image FROM training_programs WHERE name = '$old_name'");
         $old_data = mysqli_fetch_assoc($old_images);
         $old_card_image = $old_data['image'];

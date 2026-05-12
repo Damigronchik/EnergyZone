@@ -3,6 +3,53 @@
 .schedule {
     @include flex-block;
 
+    &__change {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+    &__change-button, &__ {
+        position: relative;
+        display: inline-block;
+
+        img {
+            width: 35px;
+            height: 35px;
+            transition: opacity 0.3s;
+        }
+        .img-hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+        &:hover {
+            .img-default { opacity: 0; }
+            .img-hover { opacity: 1; }
+        }
+        &_disable {
+            pointer-events: none;
+            cursor: default;
+            opacity: 0.3;
+            
+            .img-hover { display: none; }
+        }
+        &:nth-of-type(2) {
+            transform: rotate(180deg);
+        }
+    }
+    &__change-text {
+        @include main-text;
+        font-weight: 700;
+        font-style: italic;
+    }
+    &__change-description {
+        @include main-text;
+        border-left: 3px $main-orange solid;
+        padding-left: 10px;
+    }
+
     .schedule-table {
         width: 100%;
         border-spacing: 0;
@@ -25,6 +72,7 @@
             img {
                 width: 20px;
                 vertical-align: middle;
+                display: inline-block;
             }
             &:first-child {
                 width: 71px;
@@ -33,45 +81,45 @@
         &__cell {
             height: 62px;
 
+            .active-training, .new-training {
+                @include main-text;
+                font-size: 16px;
+                padding-inline: 4px;
+                width: 100%;
+                height: 100%;
+                background-color: transparent;
+                border: none;
+                line-height: 134%;
+                transition: 0.4s;
+
+                &:hover {
+                    background-color: $main-orange;
+                    transition: 0.4s;
+                    font-weight: 700;
+                }
+            }
+            .new-training {
+                color: transparent;
+
+                &:hover {
+                    color: white;
+                }
+            }
+            .disable-training {
+                @include main-text;
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 16px;
+                padding-inline: 4px;
+                width: 100%;
+                height: 100%;
+                background-color: transparent;
+                border: none;
+                line-height: 134%;
+            }
             form {
                 width: 100%;
                 height: 100%;
                 
-                .active-training, .new-training {
-                    @include main-text;
-                    font-size: 16px;
-                    padding-inline: 4px;
-                    width: 100%;
-                    height: 100%;
-                    background-color: transparent;
-                    border: none;
-                    line-height: 134%;
-                    transition: 0.4s;
-    
-                    &:hover {
-                        background-color: $main-orange;
-                        transition: 0.4s;
-                        font-weight: 700;
-                    }
-                }
-                .disable-training {
-                    @include main-text;
-                    color: rgba(255, 255, 255, 0.5);
-                    font-size: 16px;
-                    padding-inline: 4px;
-                    width: 100%;
-                    height: 100%;
-                    background-color: transparent;
-                    border: none;
-                    line-height: 134%;
-                }
-                .new-training {
-                    color: transparent;
-
-                    &:hover {
-                        color: white;
-                    }
-                }
             }
             
         }
@@ -90,76 +138,13 @@
             color: $main-orange;
             font-size: 18px;
         }
-    }
-
-    .modal-window {
-        display: none;
-        position: fixed;
-        justify-content: center;
-        align-items: center;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0.15);
-        z-index: 1;
-        
-        &__content {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            padding: 40px 60px;
-            height: auto;
-            background-color: $background;
-            border: 2px $main-orange solid;
-            border-radius: 5px;
-            animation: modalopen 0.5s;
-    
-            &.closing {
-                animation: modalclose 0.5s;
-            }
-        }
-        &__title {
-            @include title;
-            line-height: 100%;
-            max-width: 700px;
-        }
-        &__description {
-            @include main-text;
-            font-weight: 700;
-            text-align: center;
-            max-width: 700px;
-        }
-        &__buttons {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 30px;
-        }
-        &__signup, &__goback, &__homepage, &__account {
-            @include button;
-        }
-        &__signup, &__homepage {
-            background-color: $main-orange;
-        }
-        &__close-icon {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
+        &__cell_new {
+            border: 3px $main-orange solid;
         }
     }
 }
 
-@keyframes modalopen {
-    from {opacity: 0; transform: translateY(-100px)}
-    to {opacity: 100%; transform: translateY(0)}
+.modal-window {
+    @include modal-window;
 }
-@keyframes modalclose {
-    from {opacity: 100%; transform: translateY(0)}
-    to {opacity: 0; transform: translateY(-100px)}
-}
+

@@ -1,71 +1,23 @@
 @import 'general.scss';
 
-//убрат
 .modal-window {
-    display: none;
-    position: fixed;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.15);
-    z-index: 1;
-    
-    &__content {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-        padding: 40px 60px;
-        height: auto;
-        background-color: $background;
-        border: 2px $main-orange solid;
-        border-radius: 5px;
-        animation: modalopen 0.5s;
-
-        &.closing {
-            animation: modalclose 0.5s;
-        }
-    }
-    &__title {
-        @include title;
-        line-height: 100%;
-        max-width: 700px;
-    }
-    &__description {
-        @include main-text;
-        font-weight: 700;
-        text-align: center;
-        max-width: 700px;
-    }
-    &__buttons {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 30px;
-    }
-    &__signup, &__goback, &__homepage, &__account {
-        @include button;
-    }
-    &__signup, &__homepage {
-        background-color: $main-orange;
-    }
-    &__close-icon {
-        position: absolute;
-        top: 25px;
-        right: 25px;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-    }
+    @include modal-window;
 }
-//
 
 .subscriptions {
     @include flex-block();
+
+    &__header {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        
+        .add-button {
+            @include button;
+        }
+    }
 
     &__cards {
         width: 100%;
@@ -77,7 +29,7 @@
         row-gap: 20px;
         
         .card {
-            min-height: 400px;
+            min-height: 420px;
             box-sizing: content-box;
             height: 100%;
             display: flex;
@@ -89,7 +41,7 @@
             border: 1px $main-orange solid;
             border-radius: 5px;
 
-            &__info {
+            &__main-info {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
@@ -105,6 +57,37 @@
             &__period {
                 text-align: center;
             }
+            &__label {
+                @include main-text();
+                width: 100%;
+                font-size: 20px;
+                font-weight: 700;
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+            }
+            &__input {
+                @include main-text();
+                width: 100%;
+                height: 40px;
+                padding-inline: 10px;
+                background-color: transparent;
+                outline: 2px #2E2E2E solid;
+                border: none;
+                border-radius: 5px;
+                box-shadow: 3px 4px 8px rgba(white, 0.15);
+
+                &::placeholder {
+                    @include main-text();
+                    color: rgba(255, 255, 255, 0.7);
+                }
+                &:focus {
+                    outline: 2px $main-orange solid;
+                }
+                &_big {
+                    min-height: 100px;
+                }
+            }
             &__price {
                 @include title();
                 font-size: 40px;
@@ -116,11 +99,30 @@
                 margin-top: 15px;
                 background-color: $main-orange;
             }
+            &__info {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                gap: 10px;
+            }
+            &__description {
+                @include main-text;
+                font-size: 16px;
+                hyphens: auto;
+                -webkit-hyphens: auto;
+                text-align: justify;
+            }
             &__advantages {
                 display: flex;
                 flex-direction: column;
                 align-items: start;
-                gap: 15px;
+                gap: 5px;
+            }
+            &__include {
+                @include main-text;
+                font-size: 16px;
+                font-weight: 700;
+                font-style: italic;
             }
             &__advantage {
                 display: flex;
@@ -138,9 +140,12 @@
             }
             &__button {
                 @include button();
+                justify-self: center;
+                margin-bottom: 10px;
             }
-            &__purchased {
-                margin-bottom: 12px;
+
+            &_admin {
+                min-height: 600px;
             }
         }
     }

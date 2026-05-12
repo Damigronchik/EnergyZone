@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
+    const modalWindow = document.getElementById("modalWindow");
+    const modalContent = document.getElementById("modalContent");
+    const sureDelete = document.getElementById("sureDelete");
+
     const deleteWindow = document.getElementById("deleteWindow");
     const deleteContent = document.getElementById("deleteContent");
     const deleteButton = document.getElementById("deleteButton");
@@ -12,7 +16,12 @@ document.addEventListener("DOMContentLoaded", function() {
             contect.classList.remove("closing");
         }, 480);
     }
-        
+    
+    sureDelete?.addEventListener('click', function() {
+        closeModalWindow(modalWindow, modalContent);
+        deleteWindow.style.display = 'flex';
+    })
+
     deleteButton?.addEventListener('click', () => deleteWindow.style.display = 'flex')
     cancelButton?.addEventListener('click', () => closeModalWindow(deleteWindow, deleteContent))
     closeIconButton?.addEventListener('click', () => closeModalWindow(deleteWindow, deleteContent))

@@ -14,7 +14,11 @@ $page = $_GET['page'] ?? 'main';
 $action = $_GET['action'] ?? null;
 $scripts = [];
 
-$header = substr($page, 0, 5) == 'admin' ? 'admin_header' : 'header';
+if (isset($_SESSION['trainer_logged_in'])) {
+    $header = 'trainer_header';
+} else {
+    $header = substr($page, 0, 5) == 'admin' ? 'admin_header' : 'header';
+}
 $footer = substr($page, 0, 5) == 'admin' ? 'admin_footer' : 'footer';
 
 include __DIR__ . "/../src/core/link.php";

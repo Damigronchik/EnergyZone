@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap");
 @import 'header.css';
@@ -15,6 +16,26 @@ html {
   color: white;
 }
 
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+}
+@keyframes modalclose {
+  from {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
 body {
   display: flex;
   flex-direction: column;
@@ -41,14 +62,15 @@ main {
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.15);
-  z-index: 1;
+  z-index: 3;
 }
 .modal-window__content {
+  max-width: 750px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
   padding: 40px 60px;
   height: auto;
   background-color: #01010F;
@@ -80,6 +102,14 @@ main {
 .modal-window__title {
   line-height: 100%;
   max-width: 700px;
+  margin-bottom: 10px;
+}
+.modal-window__form {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 .modal-window__description {
   font-family: Andika, sans-serif;
@@ -90,11 +120,62 @@ main {
   text-align: center;
   max-width: 700px;
 }
-.modal-window__buttons {
+.modal-window__label {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.modal-window__input {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  width: 100%;
+  height: 40px;
+  padding-inline: 10px;
+  background-color: transparent;
+  outline: 2px #2E2E2E solid;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 3px 4px 8px rgba(255, 255, 255, 0.15);
+  margin-top: 10px;
+}
+.modal-window__input::-moz-placeholder {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  color: rgba(255, 255, 255, 0.7);
+}
+.modal-window__input::placeholder {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  color: rgba(255, 255, 255, 0.7);
+}
+.modal-window__input:focus {
+  outline: 2px #F67A45 solid;
+}
+.modal-window__input_big {
+  min-height: 100px;
+}
+.modal-window__option {
+  color: black;
+}
+.modal-window__buttons, .modal-window__buttons > div {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 30px;
+  margin-top: 10px;
 }
 .modal-window__signup, .modal-window__goback, .modal-window__homepage, .modal-window__account {
   font-family: Andika, sans-serif;
@@ -128,6 +209,45 @@ main {
   border: none;
   cursor: pointer;
 }
+.modal-window .agreement {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.modal-window .checkbox {
+  margin-right: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 19px;
+  height: 19px;
+  border: 2px solid #F67A45;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+.modal-window .checkbox:checked {
+  background-color: #F67A45;
+  border-color: #F67A45;
+}
+.modal-window .checkbox:checked::after {
+  content: "✔";
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  left: 1px;
+  top: -7px;
+}
 
 .subscriptions {
   display: flex;
@@ -154,6 +274,34 @@ main {
   -webkit-text-stroke: 0;
   z-index: 1;
 }
+.subscriptions__header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.subscriptions__header .add-button {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  border: 2px #F67A45 solid;
+  padding: 10px 20px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.subscriptions__header .add-button:hover {
+  background-color: #F67A45;
+  outline: 2px #F67A45 solid;
+  outline-offset: 3px;
+  transition: 0.3s;
+}
 .subscriptions__cards {
   width: 100%;
   display: flex;
@@ -164,7 +312,7 @@ main {
   row-gap: 20px;
 }
 .subscriptions__cards .card {
-  min-height: 400px;
+  min-height: 420px;
   box-sizing: content-box;
   height: 100%;
   display: flex;
@@ -176,7 +324,7 @@ main {
   border: 1px #F67A45 solid;
   border-radius: 5px;
 }
-.subscriptions__cards .card__info {
+.subscriptions__cards .card__main-info {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -191,6 +339,52 @@ main {
 }
 .subscriptions__cards .card__period {
   text-align: center;
+}
+.subscriptions__cards .card__label {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.subscriptions__cards .card__input {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  width: 100%;
+  height: 40px;
+  padding-inline: 10px;
+  background-color: transparent;
+  outline: 2px #2E2E2E solid;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 3px 4px 8px rgba(255, 255, 255, 0.15);
+}
+.subscriptions__cards .card__input::-moz-placeholder {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  color: rgba(255, 255, 255, 0.7);
+}
+.subscriptions__cards .card__input::placeholder {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  color: rgba(255, 255, 255, 0.7);
+}
+.subscriptions__cards .card__input:focus {
+  outline: 2px #F67A45 solid;
+}
+.subscriptions__cards .card__input_big {
+  min-height: 100px;
 }
 .subscriptions__cards .card__price {
   font-family: "Alumni Sans", sans-serif;
@@ -220,11 +414,36 @@ main {
   margin-top: 15px;
   background-color: #F67A45;
 }
+.subscriptions__cards .card__info {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+}
+.subscriptions__cards .card__description {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-size: 16px;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  text-align: justify;
+}
 .subscriptions__cards .card__advantages {
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: 15px;
+  gap: 5px;
+}
+.subscriptions__cards .card__include {
+  font-family: Andika, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  font-style: italic;
 }
 .subscriptions__cards .card__advantage {
   display: flex;
@@ -260,6 +479,10 @@ main {
   outline-offset: 3px;
   transition: 0.3s;
 }
-.subscriptions__cards .card__purchased {
-  margin-bottom: 12px;
+.subscriptions__cards .card__button {
+  justify-self: center;
+  margin-bottom: 10px;
+}
+.subscriptions__cards .card_admin {
+  min-height: 600px;
 }/*# sourceMappingURL=subscriptions.css.map */

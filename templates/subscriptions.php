@@ -62,23 +62,27 @@ function getPrice($price, $period) {
                     ?>
                     <form class="card" action="index.php?action=user/get_sub" method="post">
                         <input type="hidden" name="subscription_id" value="<?= $row[0] ?>">
-                        <div class="card__info">
-                            <h6><?= $row[1] ?></h6>
-                            <select class="text-black" name="period">
+                        <div class="card__main-info">
+                            <h6 class="card__title"><?= $row[1] ?></h6>
+                            <select class="card__input" name="period">
                                 <option class="text-black" value="1" selected>1 месяц - <?= $one_month_price ?>руб.</option>
                                 <option class="text-black" value="3">3 месяца - <?= getPrice($one_month_price, 3) ?>руб.</option>
                                 <option class="text-black" value="6">6 месяцев - <?= getPrice($one_month_price, 6) ?>руб.</option>
                             </select>
                             <div class="card__line"></div>
                         </div>
-                        <div class="card__advantages">
-                            <?php
-                            foreach ($sub_programs as $program): ?>
-                                <div class="card__advantage">
-                                    <img src="<?= IMG_PATH ?>abonement_advantage_icon.png" alt="icon">
-                                    <p><?= $program ?></p>
-                                </div>
-                            <?php endforeach; ?>
+                        <div class="card__info">
+                            <p class="card__description"><?= $row[3] ?></p>
+                            <div class="card__advantages">
+                                <span class="card__include">Абонемент включает:</span>
+                                <?php
+                                foreach ($sub_programs as $program): ?>
+                                    <div class="card__advantage">
+                                        <img src="<?= IMG_PATH ?>abonement_advantage_icon.png" alt="icon">
+                                        <p><?= $program ?></p>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                         
                         <?php if (!isset($_SESSION['trainer_logged_in'])): ?>

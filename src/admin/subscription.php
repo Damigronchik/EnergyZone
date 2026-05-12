@@ -2,12 +2,13 @@
 $operation = $_POST['operation'] ?? null;
 $name = $_POST['title'] ?? null;
 $price = $_POST['price'] ?? null;
+$description = $_POST['description'] ?? null;
 $selected_programs = $_POST['training_programs'] ?? [];
 
 switch ($operation) {
     case 'create':            
-        $create_query = "INSERT INTO subscriptions (name, price) 
-            VALUES ('{$name}', '{$price}')";
+        $create_query = "INSERT INTO subscriptions (name, price, description) 
+            VALUES ('{$name}', '{$price}', '{$description}')";
         mysqli_query($link, $create_query);
 
         $subscription_id = mysqli_insert_id($link);
@@ -25,7 +26,8 @@ switch ($operation) {
         
         $update_query = "UPDATE subscriptions SET
             name = '{$name}',   
-            price = '{$price}'
+            price = '{$price}',
+            description = '{$description}'
             WHERE id = $id";
         mysqli_query($link, $update_query);
 

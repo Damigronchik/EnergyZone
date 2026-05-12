@@ -5,7 +5,7 @@ function validateCheckboxes(event) {
     }
 
     const form = clickedButton.form;
-    const checkboxes = form.querySelectorAll('.mr-1'); //поменя потом тут класс на правильный
+    const checkboxes = form.querySelectorAll('.checkbox'); //поменя потом тут класс на правильный
     let checked = false;
     
     for (let checkbox of checkboxes) {

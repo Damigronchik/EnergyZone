@@ -1,73 +1,25 @@
 @import 'general.scss';
 
-//переделат
 .modal-window {
-    display: none;
-    position: fixed;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.15);
-    z-index: 1;
-    
-    &__content {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-        padding: 40px 60px;
-        height: auto;
-        background-color: $background;
-        border: 2px $main-orange solid;
-        border-radius: 5px;
-        animation: modalopen 0.5s;
-
-        &.closing {
-            animation: modalclose 0.5s;
-        }
-    }
-    &__title {
-        @include title;
-        line-height: 100%;
-        max-width: 700px;
-    }
-    &__description {
-        @include main-text;
-        font-weight: 700;
-        text-align: center;
-        max-width: 700px;
-    }
-    &__buttons {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 30px;
-    }
-    &__signup, &__goback, &__homepage, &__account {
-        @include button;
-    }
-    &__signup, &__homepage {
-        background-color: $main-orange;
-    }
-    &__close-icon {
-        position: absolute;
-        top: 25px;
-        right: 25px;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-    }
+    @include modal-window;
 }
-//
 
 .programs {
     @include flex-block;
     align-items: center;
     
+    &__header {
+        max-width: 1120px;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        
+        .add-button {
+            @include button;
+        }
+    }
     &__list {
         max-width: 1120px;
         display: flex;
@@ -82,8 +34,7 @@
             height: 564px;
             border-radius: 5px;
             position: relative;
-            padding: 5px;
-            
+
             &__back-img {
                 width: 100%;
                 height: 100%;
@@ -100,9 +51,11 @@
                 position: absolute;
                 bottom: 0;
                 left: 0;                
-                margin: 0 0 15px 15px;
+                padding: 0 0 15px 15px;
+                width: 100%;
+                height: 10px;
+                border-radius: 5px;
             }
-            
             &__name {
                 font-family: Andika, sans-serif;
                 font-size: 24px;
@@ -147,7 +100,11 @@
                     text-decoration: underline;
                     text-decoration-color: $main-orange;
                 }
-                
+                .card__info {
+                    height: 150px;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    animation: info 0.5s;
+                }
                 .card__description, .card__learn-more {
                     display: block;
                     animation: info 0.5s;

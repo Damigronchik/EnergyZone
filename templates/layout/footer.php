@@ -10,7 +10,7 @@
                 <h2 class="explore__title">Изучить</h2>
                 <a href="index.php?page=programs-list" class="explore__link">Программы тренировок</a>
                 <a href="index.php?page=training-schedule" class="explore__link">Расписание тренировок</a>
-                <a href="index.php?page=trainers-list" class="explore__link">Тренера</a>
+                <a href="index.php?page=trainers-list" class="explore__link">Список тренеров</a>
             </nav>
             <nav class="explore">
                 <h2 class="explore__title">Социальные сети</h2>
@@ -22,7 +22,7 @@
         </div>
         
         <div class="footer__copyright">
-            <p class="footer__copyright-text">© 2025 EnergyZone. All rights reserved </p>
+            <p class="footer__copyright-text">© 2026 EnergyZone. Все права защищены </p>
         </div>
     </footer>
 

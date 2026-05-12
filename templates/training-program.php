@@ -33,53 +33,59 @@ function getSubs($result, $field_name) {
     <section class="info">
         <a class="flex gap-1 items-center" href="index.php?page=programs-list"><img class="w-4 h-2" src="<?= IMG_PATH . 'arrow.png' ?>">Назад</a>
 
-        <div class="info__block">
-            <h6 class="info__name">Описание</h6>
-            <div class="flex flex-col">
-                <?php
-                $descr = explode("\n", $row[3]);
-                foreach ($descr as $descr_row):
-                ?>
-                <p><?= $descr_row ?></p>
-                <?php endforeach; ?>
+        <div class="info__blocks">
+            <div class="info__left-blocks">
+                <div class="info__block">
+                    <h6 class="info__name">Тренера</h6>
+                    <div class="info__text">
+                        <?php
+                        foreach ($trainersId as $id):
+                            $trainer = mysqli_query($link, "SELECT name, photo FROM trainers WHERE id = $id");
+                            if ($trainer):
+                                $trainer_row = mysqli_fetch_row($trainer);
+                                ?>
+                                <form action="index.php?page=trainer" method="post">
+                                    <button class="trainer flex items-center gap-4" type="submit">
+                                        <input type="hidden" name="trainer_id" value="<?= $id ?>">
+                                        <img class="photo" src="<?= IMG_PATH . $trainer_row[1] ?>">
+                                        <p><?= $trainer_row[0] ?></p>
+                                    </button>
+                                </form>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <div class="info__block">
+                    <h6 class="info__name">Абонементы, включающие эту программу</h6>
+                    <div class="info__text info__text-small">
+                        <?php
+                        foreach ($subsId as $id):
+                            $sub = mysqli_query($link, "SELECT name FROM subscriptions WHERE id = $id");
+                            if ($sub):
+                                $sub_row = mysqli_fetch_row($sub);
+                                ?>
+                                <p>"<?= $sub_row[0] ?>"</p>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+                    <a href="index.php?page=subscriptions" class="info__button" type="submit">Перейти к абонементам</a>
+                </div>
             </div>
-        </div>
-        <div class="info__block">
-            <h6 class="info__name">Тренера</h6>
-            <ul class="info__text">
-                <?php
-                foreach ($trainersId as $id):
-                    $trainer = mysqli_query($link, "SELECT name, photo FROM trainers WHERE id = $id");
-                    if ($trainer):
-                        $trainer_row = mysqli_fetch_row($trainer);
+
+            <div class="info__right-blocks">
+                <div class="info__block">
+                    <h6 class="info__name">Описание</h6>
+                    <div class="flex flex-col">
+                        <?= nl2br($row[3]); ?>
+                        <!-- <?php
+                        $descr = explode("\n", $row[3]);
+                        foreach ($descr as $descr_row):
                         ?>
-                        <form action="index.php?page=trainer" method="post">
-                            <button class="flex items-center gap-4" type="submit">
-                                <input type="hidden" name="trainer_id" value="<?= $id ?>">
-                                <img class="photo" src="<?= IMG_PATH . $trainer_row[1] ?>">
-                                <p><?= $trainer_row[0] ?></p>
-                            </button>
-                        </form>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-        <div class="info__block">
-            <h6 class="info__name">Абонементы, включающие эту программу</h6>
-            <ul class="info__text">
-                <form action="index.php?page=subscriptions" method="post">
-                    <?php
-                    foreach ($subsId as $id):
-                        $sub = mysqli_query($link, "SELECT name FROM subscriptions WHERE id = $id");
-                        if ($sub):
-                            $sub_row = mysqli_fetch_row($sub);
-                            ?>
-                            <p>"<?= $sub_row[0] ?>"</p>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                    <button class="info__button" type="submit">Абонементы</button>
-                </form>
-            </ul>
+                        <p><?= $descr_row ?></p>
+                        <?php endforeach; ?> -->
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

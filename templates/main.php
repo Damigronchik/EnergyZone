@@ -37,6 +37,8 @@ function getPrice($price, $period) {
     $current_price = $price * $period * 0.9;
     return round($current_price);
 }
+
+
 ?>
 
 <main>
@@ -50,6 +52,9 @@ function getPrice($price, $period) {
         <h2 class="programs__title">Наши программы тенировок</h2>
         <div class="programs__cards">
             <?php
+
+                echo password_hash('Adminpassword', PASSWORD_BCRYPT) . PHP_EOL;
+
             $training_query = "SELECT name, image FROM training_programs LIMIT 4";
             $subs_result = mysqli_query($link, $training_query);
 
@@ -109,16 +114,19 @@ function getPrice($price, $period) {
                         ?>
                         <form class="card" action="index.php?action=user/get_sub" method="post">
                             <input type="hidden" name="subscription_id" value="<?= $row[0] ?>">
-                            <div class="card__info">
-                                <h6><?= $row[1] ?></h6>
-                                <select class="text-black" name="period">
+                            <div class="card__main-info">
+                                <h6 class="card__title"><?= $row[1] ?></h6>
+                                <select class="card__input" name="period">
                                     <option class="text-black" value="1" selected>1 месяц - <?= $one_month_price ?>руб.</option>
                                     <option class="text-black" value="3">3 месяца - <?= getPrice($one_month_price, 3) ?>руб.</option>
                                     <option class="text-black" value="6">6 месяцев - <?= getPrice($one_month_price, 6) ?>руб.</option>
                                 </select>
                                 <div class="card__line"></div>
                             </div>
+                        <div class="card__info">
+                            <p class="card__description"><?= $row[3] ?></p>
                             <div class="card__advantages">
+                                <span class="card__include">Абонемент включает:</span>
                                 <?php
                                 foreach ($sub_programs as $program): ?>
                                     <div class="card__advantage">
@@ -127,8 +135,8 @@ function getPrice($price, $period) {
                                     </div>
                                 <?php endforeach; ?>
                             </div>
-
-                            <button type="submit" class="card__button" name="operation" value="update">Приобрести</button>
+                        </div>
+                        <button type="submit" class="card__button" name="operation" value="update">Приобрести</button>
                         </form>
                     <?php endfor;
                 endif; ?>

@@ -7,7 +7,7 @@ $training_query = "SELECT * FROM training_programs WHERE name = '$training_name'
 $training = mysqli_query($link, $training_query);
 
 if ($training) {
-    $row = mysqli_fetch_row($training);
+    $training_row = mysqli_fetch_row($training);
 }
 
 
@@ -30,26 +30,28 @@ function getSubs($result, $field_name) {
 
 <main>
     <section class="info">
-        <form class="flex flex-col gap-2" action="index.php?action=admin/training-program" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="old_title" value="<?= $row[0] ?>">
-            <input class="admin-title text-black" type="text" name="title" value="<?= $row[0] ?>" required>
+        <form class="info__block" action="index.php?action=admin/training-program" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="old_title" value="<?= $training_row[0] ?>">
+            <label class="admin-title info__name">Название
+                <input class="info__input" type="text" name="title" value="<?= $training_row[0] ?>" required>
+            </label>
             <div class="flex gap-2">
-                <label>Фото для карточки:<br>
-                    <input class="text-black bg-white" type="file" name="card_image" accept="image/*">
+                <label class="info__name">Фото для карточки:<br>
+                    <input class="info__input" type="file" name="card_image" accept="image/*">
                 </label>
-                <label>Фото для хедера:<br>
-                    <input class="text-black bg-white" type="file" name="header_image" accept="image/*">
+                <label class="info__name">Фото для хедера:<br>
+                    <input class="info__input" type="file" name="header_image" accept="image/*">
                 </label>
             </div>
             <div class="info__block">
                 <h6 class="info__name">Описание</h6>
-                <textarea class="text-black" name="description" required><?= $row[3] ?></textarea>
+                <textarea class="info__input" name="description" required><?= $training_row[3] ?></textarea>
             </div>
             <div>
                 <button type="submit" class="info__button" name="operation" value="update">Сохранить</button>
             </div>
         </form>
-        <button class="info__button" id="deleteButton">Удалить</button>
+        <button class="info__button delete-button" id="deleteButton">Удалить</button>
 
         <div class="info__block">
             <h6 class="info__name">Тренера</h6>
@@ -60,7 +62,7 @@ function getSubs($result, $field_name) {
                     if ($trainer):
                         $trainer_row = mysqli_fetch_row($trainer);
                         ?>
-                        <form action="index.php?page=admin/trainer" method="post">
+                        <form class="trainer" action="index.php?page=admin/trainer" method="post">
                             <button class="flex items-center gap-4" type="submit">
                                 <input type="hidden" name="trainer_id" value="<?= $id ?>">
                                 <img class="photo" src="<?= IMG_PATH . $trainer_row[1] ?>">
@@ -73,7 +75,7 @@ function getSubs($result, $field_name) {
         </div>
         <div class="info__block">
             <h6 class="info__name">Абонементы, включающие эту программу</h6>
-            <ul class="info__text">
+            <div class="info__text">
                 <form action="index.php?page=admin/subscriptions" method="post">
                     <?php
                     foreach ($subsId as $id):
@@ -86,7 +88,7 @@ function getSubs($result, $field_name) {
                     <?php endforeach; ?>
                     <button class="info__button" type="submit">Абонементы</button>
                 </form>
-            </ul>
+            </div>
         </div>
     </section>
 
@@ -119,11 +121,11 @@ function getSubs($result, $field_name) {
         <div class="modal-window__content" id="deleteContent">
             <h2 class="modal-window__title">Удалить тренировку?</h2>
             <p class="modal-window__description">Вы уверены что хотите удалить тренировку? Это повлечет за собой их удаление в расписании!</p>
-            <form class="flex flex-col gap-1" action="index.php?action=admin/training-program" method="post">
-                <input type="hidden" name="old_title" value="<?= $row[0] ?>">
-                <button type="submit" name="operation" value="delete">Удалить</button>
+            <form class="modal-window__buttons" action="index.php?action=admin/training-program" method="post">
+                <input type="hidden" name="old_title" value="<?= $training_row[0] ?>">
+                <button class="modal-window__goback" type="submit" name="operation" value="delete">Удалить</button>
+                <button class="modal-window__homepage" type="button" id="cancelButton">Отмена</button>
             </form>
-            <button type="button" id="cancelButton">Отмена</button>
             <button class="modal-window__close-icon" id="closeIconButton"><img src="<?= IMG_PATH ?>close_icon.png" alt="close_icon"></button>
         </div>
     </div>

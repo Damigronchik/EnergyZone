@@ -1,6 +1,7 @@
 <?php
 $now = date('Y-m-d H:i:s');
     
+
 $move_query = "INSERT INTO old_user_trainings (user_mail, id_train_schedule, training_datetime)
     SELECT user_mail, id_train_schedule, training_datetime
     FROM user_trainings
